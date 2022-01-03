@@ -23,17 +23,14 @@ function onInput(evt) {
     const country = evt.target.value.trim();
     fetchCountries(country)
         .then((names) => {
+            clearData();
             if (names.status === 404) {
                 Notiflix.Notify.failure('Oops, there is no country with that name');
             } else if (names.length > 10) {
-                refs.countryInfo.innerHTML = "";
-                refs.countryList.innerHTML = "";
                 Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
             } else if (names.length === 1) {
-                refs.countryList.innerHTML = "";
                 renderCountry(names);
             } else {
-                refs.countryInfo.innerHTML = "";
                 renderCountries(names);
             }
         })
@@ -65,3 +62,8 @@ function renderCountries(names) {
     
     refs.countryList.innerHTML = markup;        
 };
+
+function clearData() {
+    refs.countryInfo.innerHTML = "";
+    refs.countryList.innerHTML = "";
+}
