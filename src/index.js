@@ -16,7 +16,7 @@ refs.input.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
 function onInput(evt) {
     if (!evt.target.value) {
-        refs.countryList.innerHTML = '';
+        clearData();
         return;
     }
 
