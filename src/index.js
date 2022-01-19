@@ -15,12 +15,13 @@ const refs = {
 refs.input.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
 function onInput(evt) {
-    if (!evt.target.value) {
+    const country = evt.target.value.trim();
+    
+    if (!country) {
         clearData();
         return;
     }
 
-    const country = evt.target.value.trim();
     fetchCountries(country)
         .then((names) => {
             clearData();
